@@ -15,13 +15,27 @@ const winningCombinations = [
     [3, 5, 7]
   ]
 
-  handleClick = function(event) {
-    var cell = event.target
-    console.log(cell.id);
-  }
+handleClick = function(event) {
+    var cell = event.target;
   
+    cell.innerHTML = currentPlayer;
+  
+    if(currentPlayer === "X" ) {
+      playerSelections = playerXSelections;
+      nextPlayer = "O";
+    } else {
+      playerSelections = playerOSelections;
+      nextPlayer = "X";
+    }
+  
+    playerSelections.push(parseInt(cell.id));
+  
+    // Swap players
+    currentPlayer = nextPlayer;
+  }
+
   var cells = document.querySelectorAll("td");
-  
-  for(var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener('click', handleClick)
-  }
+
+for(var i = 0; i < cells.length; i++) {
+  cells[i].addEventListener('click', handleClick)
+}
